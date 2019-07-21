@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bayes theorem</title>
+<style>
+	body{
+		background-color: #664488;
+	}
+	button{
+		background-color: #11000f; 
+    border: none;
+    color: white;
+    width: 147px;
+    height: 55px;
+    text-align: center;
+    font-size: 14px;
+  line-height: 30px;
+  font-family: "Roboto";
+  text-align: center;
+    margin: 0 0 1px 20px;
+    cursor: pointer;
+    padding: 0 6px;
+    font-weight: 300;
+	}
+	p{
+	background-color: #ff0000; 
+    border: none;
+    color: white;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    font-size: 30px;
+  line-height: 30px;
+  font-family: "Roboto";
+  text-align: center;
+    margin: 0 0 1px 20px;
+    cursor: pointer;
+    padding: 0 6px;
+    font-weight: 300;
+    float: left;
+	}
+</style>
+</head>
+<body>
+<h1>Bad requests calculator</h1>
+<div id="result"></div>
+<button onclick="calc()">Calculate</button>	
+</body>
+<script>
+	function calc(){
+		var res=[];
+	
+var rest="";
+var sum=0;
+var bad_requ=[];
+var bad_requests=[];
+var requests=[];
+var n=prompt("How many servers do you have?")
+for(i=1;i<=n;i++)
+{if(i==0){break;}
+else if(i==1) {var req = prompt("How many requests does "+i+"st server have?"); requests.push(req);}
+else if(i==2) {var req = prompt("How many requests does "+i+"nd server have?");requests.push(req);}
+else if(i==3) {var req = prompt("How many requests does "+i+"rd server have?");requests.push(req);}
+else {var req = prompt("How many requests does "+i+"th server have?"); requests.push(req);}}
+var requests1 = requests.map(function (x) { 
+  return parseInt(x, 10); })
+for(j=1;j<=n;j++)
+	{if(j==0){break;}
+else if(j==1) {var bad_req = prompt("How many bad requests does "+j+"st server have?"); bad_requests.push(bad_req);}
+else if(j==2) {var bad_req = prompt("How many bad requests does "+j+"nd server have?"); bad_requests.push(bad_req);}
+else if(j==3) {var bad_req = prompt("How many bad requests does "+j+"rd server have?"); bad_requests.push(bad_req);}
+else {var bad_req = prompt("How many bad requests does "+j+"th server have?"); bad_requests.push(bad_req);}}
+var bad_requests1 = bad_requests.map(function (x) { 
+  return parseInt(x, 10); })
+for(k=0;k<n;k++)
+{bad_requ[k]=bad_requests1[k]*requests1[k];
+	sum=sum+bad_requests1[k]*requests1[k];}
+	for (l=0;l<n;l++)
+		{res[l]=bad_requ[l]/sum*100;}
+	for(m=0;m<n;m++)
+	{rest=rest+"<p>"+"The share of "+(m+1)+". server's bad requests: "+res[m].toFixed(1)+"%"+"</p" +"</br>";}
+document.getElementById("result").innerHTML=rest;}
+	</script>
+</html>
